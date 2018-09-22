@@ -1,4 +1,4 @@
-<! DOCTY<! DOCTYPE  html >
+<! DOCTYPE  html >
 < html >
 < meta  charset = " utf-8 " />
 < head >
@@ -8,16 +8,16 @@
 < body  onload = " onLoad (); " >
   < div  id = " banano " > </ div >
   < ol >
-    < li > < img  class = " small_image "  src = " https://i.imgur.com/1LXMCUv.jpg " /> </ li >
+    < li > < img  class = " small_image "  src = " https://i.imgur.com/gMSwNDa.jpg " /> </ li >
   </ ol >
   < mesa >
     < tr >
       < th > Id </ th >
-      < th > Nombre </ th >
+      < th > nombre </ th >
     </ tr >
     < tr >
       < td > 1 </ td >
-      < td > Alpha </ td >
+      < td > parakeet1 </ td >
     </ tr >
     < tr >
       < td > 2 </ td >
@@ -30,7 +30,6 @@
         los padres . appendChild (nodo);
         nodo de retorno ;
       }
-
       const  addChildElement  = ( parent , childType , childText ) => {
         const  niño  =  documento . createElement (childType);
         los padres . appendChild (niño);
@@ -39,8 +38,7 @@
         }
         devolver al niño;
       }
-
-	  const  loadJson  = () => {
+      const  loadJson  = () => {
         const  xhttp  =  new  XMLHttpRequest ();
         xhttp . onreadystatechange  =  function () {
           if ( this . readyState  ==  4  &&  this . status  ==  200 ) {
@@ -53,19 +51,15 @@
       }
       const  loadJsonCallback  = ( json ) => {
         const  banano  =  documento . getElementById ( ' banano ' );
-
-        addChildText (banano, ' Coranos Bananos ' );
+        addChildText (banano, ' liam05 Bananos ' );
         const  table  =  addChildElement (banano, ' tabla ' );
-
         const  tableHeaderRow  =  addChildElement (tabla, ' tr ' );
         if ( json . length  ==  0 ) {
           regreso ;
         }
-
         for ( const [ key , value ] de  Object . entries (json [ 0 ])) {
           addChildElement (tableHeaderRow, ' th ' , clave);
         }
-
         json . forEach (( jsonElt , jsonEltIx ) => {
           const  tableDataRow  =  addChildElement (tabla, ' tr ' );
           for ( const [ key , value ] de  Object . entries (jsonElt)) {
