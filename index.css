@@ -1,5 +1,65 @@
-table , tr , td , th {
-   border : sólido ;
+.small_image {
+  altura : 100 px ;
+  ancho : 100 px ;
+}
+
+tabla , tr , td , th {
+  borde : sólido ;
   ancho del borde : 0.5 px ;
   font-family : monoespacio ;
+}
+
+
+.text_align_center {
+  text-align : center ;
+}
+
+.w100pct {
+  ancho : 100 % ;
+}
+
+.w99pct {
+  ancho : 99 % ;
+}
+
+.w96pct {
+  ancho : 96 % ;
+}
+
+.w600px {
+  ancho : 600 px ;
+}
+
+.selected_button {
+  caja-sombra : 0 px  -2 px  # 999 ;
+}
+
+.unselected_button {
+  caja-sombra : 0  0 px  # 999 ;
+}
+
+.button {
+  relleno : 3 px  3 px ;
+  margen : 3 px  3 px ;
+  tamaño de letra : 12 px ;
+  text-align : center ;
+  cursor : puntero ;
+  esquema : ninguno ;
+  color : # 000 ;
+  color de fondo : #EEE ;
+  borde : sólido ;
+  ancho del borde : 0.5 px ;
+  border-radius : 5 px ;
+  color del borde : #AAA ;
+}
+
+.button : hover {
+  color de fondo : #DDD ;
+  box-shadow : 0 px  2 px  # 999 ;
+}
+
+.button : active {
+  color de fondo : #EEE ;
+  caja-sombra : 0  1 px  # 666 ;
+  transformar : traducir Y ( 2 px );
 }
