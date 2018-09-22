@@ -1,0 +1,73 @@
+<! doctype  html >
+< html >
+< head >
+< meta  charset = " utf-8 " >
+< title > Juego de Banano </ title >
+< link  rel = " stylesheet "  type = " text / css "  href = " index.css " >
+</ head >
+< body  onload = " onLoad () " >
+  < div  class = " w600px " >
+    < table  class = " w100pct " >
+      < tr >
+        < th > Win Chance </ th >
+        < th > Roll Under </ th >
+        < th > Pago </ th >
+      </ tr >
+      < tr >
+        < td  id = " win_chance " > </ td >
+        < td  id = " roll_under " > </ td >
+        < td  id = " payout " > </ td >
+      </ tr >
+    </ table >
+    < table  class = " w100pct " >
+      < tr >
+        < th  colspan = " 5 " > ¡Elija la posibilidad de ganar! </ th >
+      </ tr >
+      < tr >
+        < td > < button  id = " vl "  class = " button "  onclick = " chanceSelectionClick ( this ) " > Muy bajo </ button > </ td >
+        < td > < button  id = " l "  class = " button "  onclick = " chanceSelectionClick ( this ) " > Low </ button > </ td >
+        < td > < button  id = " a "  class = " button "  onclick = " chanceSelectionClick ( this ) " > Promedio </ button > </ td >
+        < td > < button  id = " h "  class = " button "  onclick = " chanceSelectionClick ( this ) " > Alto </ button > </ td >
+        < td > < button  id = " vh "  class = " botón selected_button "  onclick = " chanceSelectionClick ( this ) " > Muy alto </ button > </ td >
+      </ tr >
+      < tr >
+        < th  colspan = " 2 " > Semilla de servidor </ th >
+        < td  colspan = " 3 " > < input  id = " server_seed "  class = " w96pct "  type = " text "  name = " server_seed "  value = " 123456 " > </ td >
+      </ tr >
+      < tr >
+        < th  colspan = " 2 " > Semilla de cliente </ th >
+        < td  colspan = " 3 " > < input  id = " client_seed "  class = " w96pct "  type = " text "  name = " client_seed "  value = " ABCDEF " > </ td >
+      </ tr >
+      < tr >
+        < th  colspan = " 2 " > Nonce </ th >
+        < td  colspan = " 3 " > < input  id = " nonce "  class = " w96pct "  type = " number "  name = " nonce "  value = " 1 " > </ td >
+      </ tr >
+      < tr >
+        < th  colspan = " 2 " > Número de apuestas </ th >
+        < td  colspan = " 3 " > < input  id = " number_of_bets "  class = " w96pct "  type = " number "  name = " number_of_bets "  value = " 10 " > </ td >
+      </ tr >
+      < tr >
+        < td  colspan = " 5 " > < botón  id = " vh "  clase = " botón w99pct "  onclick = " playClick ( esto ) " > ¡Jugar! </ button > </ td >
+      </ tr >
+    </ table >
+    < p >
+    < h3  class = " text_align_center " > Registro de apuestas </ h3 >
+    < div  id = " bets " >
+      < table  class = " w100pct " >
+        < tr >
+          < th > Número de apuesta </ th >
+          < th > hash </ th >
+          < th > Resultado </ th >
+          < th > Objetivo </ th >
+          < th > Ganar / Perder </ th >
+          < th > Beneficio </ th >
+          < th > Beneficio total </ th >
+        </ tr >
+      </ table >
+    </ div >
+  </ div >
+  < script  src = " https://coranos.github.io/js-lib/crypto-js.js " > < / script >
+  < script  src = " https://coranos.github.io/coranos-common.js " > < / script >
+  < script  src = " game.js " > < / script >
+</ body >
+</ html >
