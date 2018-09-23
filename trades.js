@@ -1,190 +1,168 @@
-const loadJson = (url,callback) => {
-    const xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
-      if (this.readyState == 4 && this.status == 200) {
-        callback(this.response);
+const  loadJson  = ( url , callback ) => {
+    const  xhttp  =  new  XMLHttpRequest ();
+    xhttp . onreadystatechange  =  function () {
+      if ( this . readyState  ==  4  &&  this . status  ==  200 ) {
+        devolución de llamada ( esta . respuesta );
       }
     }
-    xhttp.responseType = 'json';
-    xhttp.open('GET', url, true);
-    xhttp.send();
+    xhttp . responseType  =  ' json ' ;
+    xhttp . open ( ' GET ' , url, verdadero );
+    xhttp . enviar ();
   }
 
 var priceChartConfig = {
-  type : 'bar',
-  data : {},
-  options : {
-    spanGaps : true,
-    legend : {
-      position : 'top',
-      display : true
+  tipo :  ' barra ' ,
+  datos : {},
+  opciones : {
+    spanGaps :  cierto ,
+    leyenda : {
+      posición :  ' arriba ' ,
+      pantalla :  verdadero
     },
-    responsive : true,
-    title : {
-      display : true,
-      text : 'Chart'
+    receptivo :  cierto ,
+    título : {
+      pantalla :  verdadero ,
+      texto :  ' Gráfico '
     },
-    tooltips : {
-      mode : 'index',
+    información sobre herramientas : {
+      modo :  ' índice ' ,
     },
     hover : {
-      mode : 'index'
+      modo :  ' índice '
     },
-    scales : {
-      xAxes : [ {
+    escalas : {
+      xAxes : [{
         scaleLabel : {
-          display : true,
-          labelString : 'date'
+          pantalla :  verdadero ,
+          labelString :  ' fecha '
         }
-      } ],
-      yAxes : [ {
-        stacked : false,
-        id : 'nano',
-        position : 'left',
+      }],
+      yAxes : [{
+        apilado :  falso ,
+        id :  ' nano ' ,
+        posición :  ' izquierda ' ,
         scaleLabel : {
-          display : true,
-          labelString : 'nano'
-        }
-      }, {
-        stacked : false,
-        id : 'banano',
-        position : 'left',
-        scaleLabel : {
-          display : true,
-          labelString : 'banano'
+          pantalla :  verdadero ,
+          labelString :  ' nano '
         }
       }, {
-        stacked : true,
-        id : 'transactions',
-        position : 'right',
+        apilado :  falso ,
+        id :  ' banano ' ,
+        posición :  ' izquierda ' ,
         scaleLabel : {
-          display : true,
-          labelString : 'transactions'
+          pantalla :  verdadero ,
+          labelString :  ' banano '
         }
       }, {
-        stacked : false,
-        id : 'ratio',
-        position : 'right',
+        apilado :  cierto ,
+        id :  ' transacciones ' ,
+        posición :  ' derecha ' ,
         scaleLabel : {
-          display : true,
-          labelString : 'ratio'
+          pantalla :  verdadero ,
+          labelString :  ' transacciones '
         }
-      } ]
+      }, {
+        apilado :  falso ,
+        id :  ' ratio ' ,
+        posición :  ' derecha ' ,
+        scaleLabel : {
+          pantalla :  verdadero ,
+          labelString :  ' ratio '
+        }
+      }]
     }
   }
 };
 
-function callback (response) {
-  const data = {};
-  data.labels = [];
-  data.datasets = [];
-  const txDs = {};
-  const nanosDs = {};
-  const bananosDs = {};
+función  devolución de llamada ( respuesta ) {
+  const  data  = {};
+  datos . labels  = [];
+  datos . datasets  = [];
+  const  txDs  = {};
+  const  nanosDs  = {};
+  const  bananosDs  = {};
 
-  txDs.label = 'transactions';
-  nanosDs.label = 'nano';
-  bananosDs.label = 'banano';
+  txDs . label  =  ' transacciones ' ;
+  nanosDs . label  =  ' nano ' ;
+  bananosDs . label  =  ' banano ' ;
 
-  txDs.hidden = false;
-  nanosDs.hidden = true;
-  bananosDs.hidden = false;
+  txDs . oculto  =  falso ;
+  nanosDs . oculto  =  verdadero ;
+  bananosDs . oculto  =  falso ;
 
-  txDs.borderColor = '#000000';
-  nanosDs.borderColor = '#7777AA';
-  bananosDs.borderColor = '#AAAA00';
+  txDs . borderColor  =  ' # 000000 ' ;
+  nanosDs . borderColor  =  ' # 7777AA ' ;
+  bananosDs . borderColor  =  ' # AAAA00 ' ;
 
-  data.datasets.push(txDs);
-  data.datasets.push(nanosDs);
-  data.datasets.push(bananosDs);
+  datos . conjuntos de datos . push (txDs);
+  datos . conjuntos de datos . push (nanosDs);
+  datos . conjuntos de datos . empujar (bananosDs);
 
-  for (let ix = 0; ix < data.datasets.length; ix++) {
-    data.datasets[ix].data = [];
-    data.datasets[ix].backgroundColor = 'rgb(255,255,255)';
-    data.datasets[ix].steppedLine = false;
-    data.datasets[ix].fill = false;
-    data.datasets[ix].type = 'line';
-    data.datasets[ix].yAxisID = data.datasets[ix].label;
+  for ( let ix =  0 ; ix <  data . datasets . length ; ix ++ ) {
+    datos . conjuntos de datos [ix]. data  = [];
+    datos . conjuntos de datos [ix]. backgroundColor  =  ' rgb (255,255,255) ' ;
+    datos . conjuntos de datos [ix]. steppedLine  =  false ;
+    datos . conjuntos de datos [ix]. fill  =  false ;
+    datos . conjuntos de datos [ix]. tipo  =  ' línea ' ;
+    datos . conjuntos de datos [ix]. yAxisID  =  datos . conjuntos de datos [ix]. etiqueta ;
   }
 
-  priceChartConfig.data = data;
+  priceChartConfig . datos  = datos;
 
-  const eltByDate = {};
+  const  eltByDate  = {};
 
-  let lastIx = 0;
+  let lastIx =  0 ;
 
-  response.data = response.data.reverse();
+  respuesta . datos  =  respuesta . datos . reverse ();
 
-  for (let ix = 0; ix < response.data.length; ix++) {
-    const elt = response.data[ix];
-    const date = elt.date.substring(0, 10);
+  for ( let ix =  0 ; ix <  response . data . length ; ix ++ ) {
+    const  elt  =  respuesta . datos [ix];
+    const  date  =  elt . fecha . subcadena ( 0 , 10 );
 
-    if (eltByDate[date] == undefined) {
-      // console.log('new date', ix, date);
-      eltByDate[date] = lastIx;
-      lastIx++;
+    if (eltByDate [date] ==  undefined ) {
+      // console.log ('nueva fecha', ix, fecha);
+      eltByDate [date] = lastIx;
+      lastIx ++ ;
     } else {
-      // console.log('old date', ix, date, eltByDate[date]);
+      // console.log ('fecha anterior', ix, fecha, eltByDate [fecha]);
     }
 
-    const dataIx = eltByDate[date];
+    const  dataIx  = eltByDate [date];
 
-    // console.log('date ix', date, dataIx);
+    // console.log ('date ix', date, dataIx);
 
-    if (data.labels[dataIx] == undefined) {
-      // console.log('new label', dataIx, date);
-      data.labels[dataIx] = date;
+    if ( data . labels [dataIx] ==  undefined ) {
+      // console.log ('nueva etiqueta', dataIx, fecha);
+      datos . labels [dataIx] = fecha;
     }
 
-    if (txDs.data[dataIx] == undefined) {
-      txDs.data[dataIx] = 0;
+    if ( txDs . data [dataIx] ==  undefined ) {
+      txDs . datos [dataIx] =  0 ;
     }
 
-    if (nanosDs.data[dataIx] == undefined) {
-      nanosDs.data[dataIx] = 0;
+    if ( nanosDs . data [dataIx] ==  undefined ) {
+      nanosDs . datos [dataIx] =  0 ;
     }
 
-    if (bananosDs.data[dataIx] == undefined) {
-      bananosDs.data[dataIx] = 0;
+    if ( bananosDs . data [dataIx] ==  undefined ) {
+      bananosDs . datos [dataIx] =  0 ;
     }
 
-    txDs.data[dataIx]++;
-    nanosDs.data[dataIx] += elt.nano;
-    bananosDs.data[dataIx] += elt.banano;
+    txDs . datos [dataIx] ++ ;
+    nanosDs . datos [dataIx] + =  elt . nano ;
+    bananosDs . datos [dataIx] + =  elt . banano ;
   }
 
-  for (let ix = 0; ix < data.labels.length; ix++) {
-    nanosDs.data[ix] /= 1000000;
+  for ( let ix =  0 ; ix <  data . labels . length ; ix ++ ) {
+    nanosDs . datos [ix] / =  1000000 ;
   }
 
-  // console.log(priceChartConfig.data);
+  // console.log (priceChartConfig.data);
 
-  var ctx = document.getElementById('price-canvas').getContext('2d');
-  window.myLine = new Chart(ctx, priceChartConfig);
+  var ctx =  documento . getElementById ( ' price-canvas ' ). getContext ( ' 2d ' );
+  ventana . myLine  =  new  Chart (ctx, priceChartConfig);
 }
 
-window.onload = function () {
-  loadJson('trades.json', callback);
+ventana . onload  =  function () {
+  loadJson ( ' trades.json ' , devolución de llamada);
 };
-6.4 En su sitio gh-pages agregue un nuevo archivo llamado trades.html con el siguiente contenido, que cargará los datos como un gráfico:
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Banano Trades</title>
-<style>
-canvas {
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-}
-</style>
-</head>
-<body>
-  <div style="width: 100%;">
-    <canvas id="price-canvas"></canvas>
-  </div>
-  <script src="https://coranos.github.io/js-lib/chart-2.6.0.js"></script>
-  <script src="trades.js"></script>
-</body>
-</html>
