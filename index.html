@@ -16,8 +16,8 @@
       <th>Name</th>
     </tr>
     <tr>
-      <td>#0420</td>
-      <t>Parakeet1</td>
+      <td>#0690</td>
+      <td>Parakeet</td>
     </tr>
     <tr>
       <td>#0420</td>
@@ -25,8 +25,56 @@
     </tr>
   </table>
   <script>
-      function onLoad () {
-        document.getElementById('banano').innerHTML = 'Parzival Bananos';
+      const addChildText = (parent,childText) => {
+        const node = document.createTextNode(childText);
+        parent.appendChild(node);
+        return node;
+      }
+
+      const addChildElement = (parent,childType,childText) => {
+        const child = document.createElement(childType);
+        parent.appendChild(child);
+        if(childText !== undefined) {
+          child.appendChild(document.createTextNode(childText));
+        }
+        return child;
+      }
+
+	  const loadJson = () => {
+        const xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+          if (this.readyState == 4 && this.status == 200) {
+            loadJsonCallback(this.response);
+          }
+        }
+        xhttp.responseType = 'json';
+        xhttp.open('GET', 'index.json', true);
+        xhttp.send();
+      }
+      const loadJsonCallback = (json) => {
+        const banano = document.getElementById('banano');
+
+        addChildText(banano, 'Parzival Bananos');
+        const table = addChildElement(banano,'table');
+
+        const tableHeaderRow = addChildElement(table,'tr');
+        if(json.length == 0) {
+          return;
+        }
+
+        for (const [key, value] of Object.entries(json[0])) {
+          addChildElement(tableHeaderRow,'th',key);
+        }
+
+        json.forEach((jsonElt,jsonEltIx) => {
+          const tableDataRow = addChildElement(table,'tr');
+          for (const [key, value] of Object.entries(jsonElt)) {
+            addChildElement(tableDataRow,'td',value);
+          }
+        });
+      }
+      const onLoad = () => {
+        loadJson();
       }
     </script>
 </body>
