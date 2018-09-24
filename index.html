@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <meta charset="utf-8" />
@@ -13,14 +14,14 @@
   <table>
     <tr>
       <th>Id</th>
-      <th>Name</th>
-    </tr>
-    <tr>
-      <td>#0690</td>
-      <td>Parakeet</td>
+      <th>name</th>
     </tr>
     <tr>
       <td>#0420</td>
+      <td>Parakeet</td>
+    </tr>
+    <tr>
+      <td>#0690</td>
       <td>Parzival</td>
     </tr>
   </table>
@@ -30,7 +31,6 @@
         parent.appendChild(node);
         return node;
       }
-
       const addChildElement = (parent,childType,childText) => {
         const child = document.createElement(childType);
         parent.appendChild(child);
@@ -39,8 +39,7 @@
         }
         return child;
       }
-
-	  const loadJson = () => {
+      const loadJson = () => {
         const xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
           if (this.readyState == 4 && this.status == 200) {
@@ -53,19 +52,15 @@
       }
       const loadJsonCallback = (json) => {
         const banano = document.getElementById('banano');
-
         addChildText(banano, 'Parzival Bananos');
         const table = addChildElement(banano,'table');
-
         const tableHeaderRow = addChildElement(table,'tr');
         if(json.length == 0) {
           return;
         }
-
         for (const [key, value] of Object.entries(json[0])) {
           addChildElement(tableHeaderRow,'th',key);
         }
-
         json.forEach((jsonElt,jsonEltIx) => {
           const tableDataRow = addChildElement(table,'tr');
           for (const [key, value] of Object.entries(jsonElt)) {
